@@ -1,0 +1,51 @@
+spring:
+  # 配置数据源信息
+  datasource:
+    dynamic:
+      # 设置默认的数据源或者数据源组,默认值即为master
+      primary: master
+      # 严格匹配数据源,默认false.true未匹配到指定数据源时抛异常,false使用默认数据源
+      strict: false
+      datasource:
+        master:
+          url: jdbc:mysql://localhost:3306/db1?characterEncoding=utf8&useSSL=false
+          driver-class-name: com.mysql.cj.jdbc.Driver
+          username: root
+          password: root1234
+        slave_1:
+          url: jdbc:mysql://localhost:3306/db2?characterEncoding=utf8&useSSL=false
+          driver-class-name: com.mysql.cj.jdbc.Driver
+          username: root
+          password: root1234
+
+
+
+#  datasource:
+#    driver-class-name: com.mysql.cj.jdbc.Driver
+#    password: root1234
+#    username: root
+#    url: jdbc:mysql://localhost:3306/db1?useSSL=true&useUnicode=true&characterEncoding=utf-8&serverTimezone=UTC
+#   type: com.zaxxer.hikari.HikariDataSource
+
+
+  #  datasource:
+#    driver-class-name: org.h2.Driver
+#    username: root
+#    password: test
+#  sql:
+#    init:
+#      schema-locations: classpath:db/schema-h2.sql
+#      data-locations: classpath:db/data-h2.sql
+  mvc:
+   pathmatch:
+     matching-strategy: ant_path_matcher
+
+my-service:
+  ip: ni-hou
+  port: 88888888
+mybatis-plus:
+  configuration:
+    lazy-loading-enabled: true
+    log-impl: org.apache.ibatis.logging.stdout.StdOutImpl
+    cache-enabled: true
+
