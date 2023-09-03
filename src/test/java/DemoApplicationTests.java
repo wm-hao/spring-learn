@@ -9,7 +9,9 @@ import app.service.AdminService;
 import app.service.PersonService;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.boot.test.context.SpringBootTest;
+import org.springframework.data.redis.core.RedisTemplate;
 import org.springframework.util.Assert;
 
 import java.util.HashSet;
@@ -64,9 +66,8 @@ public class DemoApplicationTests {
     }
 
 
-
     @Test
-    public void testDynamicDataSource(){
+    public void testDynamicDataSource() {
         System.out.println(personService.getById(1).getName());
         System.out.println(adminService.getById(1).getName());
     }
@@ -90,5 +91,30 @@ public class DemoApplicationTests {
         a.setEmail("xxx@eamil.com");
         a.setName("admin1");
         System.out.println(adminService.addNewAdmin(a));
+    }
+
+
+    @Autowired
+    RedisTemplate<String, Object> redisTemplate;
+
+
+    @Autowired
+    @Qualifier("json")
+    RedisTemplate<String, Object> redisTemplate2;
+
+    @Test
+    public void testRedis() throws Exception {
+        Person p = new Person();
+        p.setAge(10);
+        p.setName("aaa");
+        p.setEmail("@email");
+        redisTemplate.opsForValue().set("test_str", p.toString());
+        redisTemplate.opsForHash().put("hash1", "k1", "v1");
+        redisTemplate2.opsForValue().set("json1", p);
+        redisTemplate2.opsForHash().put("jsonhash", "k2", "v2");
+        System.out.println(redisTemplate.opsForValue().get("test_str"));
+        System.out.println(redisTemplate.opsForHash().get("hash1", "k1"));
+        System.out.println(redisTemplate2.opsForValue().get("json1"));
+        System.out.println(redisTemplate2.opsForHash().get("jsonhash", "k1"));
     }
 }
