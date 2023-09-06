@@ -17,3 +17,7 @@
     7.延迟加载  lazy-loading-enabled: true   @TableField(exist = false)
 ##   三、集成swagger-ui
     1.引入springfox-boot-starter增加相关注解，注意新的ui地址是http://localhost:8080/swagger-ui/index.html（原因是springfox.boot.starter.autoconfigure.SwaggerUiWebMvcConfigurer）
+
+##  四、集成redis
+    1.集成standalone模式redis DemoApplicationTests.testRedis
+    2.集成redis-sentinel模式redis（例子RedisController）如何搭建redis-sentinel（随便soso就有啦）

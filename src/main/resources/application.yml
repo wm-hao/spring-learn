@@ -20,32 +20,48 @@ spring:
 
 
 
-#  datasource:
-#    driver-class-name: com.mysql.cj.jdbc.Driver
-#    password: root1234
-#    username: root
-#    url: jdbc:mysql://localhost:3306/db1?useSSL=true&useUnicode=true&characterEncoding=utf-8&serverTimezone=UTC
-#   type: com.zaxxer.hikari.HikariDataSource
+  #  datasource:
+  #    driver-class-name: com.mysql.cj.jdbc.Driver
+  #    password: root1234
+  #    username: root
+  #    url: jdbc:mysql://localhost:3306/db1?useSSL=true&useUnicode=true&characterEncoding=utf-8&serverTimezone=UTC
+  #   type: com.zaxxer.hikari.HikariDataSource
 
 
   #  datasource:
-#    driver-class-name: org.h2.Driver
-#    username: root
-#    password: test
-#  sql:
-#    init:
-#      schema-locations: classpath:db/schema-h2.sql
-#      data-locations: classpath:db/data-h2.sql
+  #    driver-class-name: org.h2.Driver
+  #    username: root
+  #    password: test
+  #  sql:
+  #    init:
+  #      schema-locations: classpath:db/schema-h2.sql
+  #      data-locations: classpath:db/data-h2.sql
   mvc:
-   pathmatch:
-     matching-strategy: ant_path_matcher
+    pathmatch:
+      matching-strategy: ant_path_matcher
   session:
     store-type: redis
     timeout: 1800
 
+  #  redis:
+  #    host: localhost
+  #    port: 6379
   redis:
-    host: localhost
-    port: 6379
+    password:
+    jedis:
+      pool:
+        #最大连接数
+        max-active: 1024
+        #最大阻塞等待时间(负数表示没限制)
+        max-wait: 200
+        #最大空闲
+        max-idle: 300
+        #最小空闲
+        min-idle: 10
+    sentinel:
+      master: mymaster
+      nodes: 127.0.0.1:8001,127.0.0.1:8002,127.0.0.1:8003,127.0.0.1:8004
+
 
 my-service:
   ip: ni-hou
