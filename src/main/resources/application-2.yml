@@ -1,3 +1,4 @@
+
 spring:
   # 配置数据源信息
   datasource:
@@ -75,7 +76,7 @@ spring:
       max-connections: 5
       idle-timeout: 30000
   jms:
-    pub-sub-domain: false
+    pub-sub-domain: true
 
 my-queue: queue1
 sec-queue: queue3
@@ -90,6 +91,7 @@ mybatis-plus:
     lazy-loading-enabled: true
     log-impl: org.apache.ibatis.logging.stdout.StdOutImpl
     cache-enabled: true
-
+server:
+  port: 8081
 
 
