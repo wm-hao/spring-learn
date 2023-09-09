@@ -21,3 +21,11 @@
 ##  四、集成redis
     1.集成standalone模式redis DemoApplicationTests.testRedis
     2.集成redis-sentinel模式redis（例子RedisController）如何搭建redis-sentinel（随便soso就有啦）
+
+##  五、集成activemq
+    1.配置spring-boot-starter-activemq（可能出现JmsMessagingTemplate注入不了，springboot2以后要添加pooled-jms依赖）
+    2.同时支持queue和topic模式，topic需要自己注入JmsListenerContainerFactory，然后消费者注解要指明containerFactory = "jmsListenerContainerTopic"
+    3.想要queue转发消息到topic，自己代码写，@SendTo没用 
+    4.@SendTo注解后，要有返回值，不然会报错进入死信队列DLQ
+    5.不转发消息，就void返回
+    6.application-2.yml、application-3.yml是为了测试多个订阅，queue模式每次只有一个实例消费，topic都会消费（入口ActiveMQController）
