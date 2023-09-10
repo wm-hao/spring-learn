@@ -18,6 +18,8 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
+import javax.servlet.http.HttpServletRequest;
+
 @Api(tags = "访问示例")
 @RestController
 public class HelloController {
@@ -34,8 +36,8 @@ public class HelloController {
     private UserMapper userMapper;
 
     @RequestMapping("/hello")
-    public String hello() {
-        return "hello";
+    public String hello(HttpServletRequest request) {
+        return "hello:" + request.getRemoteHost() + ":" + request.getRemotePort();
     }
 
     @ApiOperation(value = "用户测试",notes = "用户测试notes")

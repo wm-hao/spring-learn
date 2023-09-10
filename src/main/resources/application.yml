@@ -76,6 +76,16 @@ spring:
       idle-timeout: 30000
   jms:
     pub-sub-domain: false
+  application:
+    name: sbc
+  cloud:
+    zookeeper:
+      discovery:
+        enabled: true
+      connect-string: localhost:2181
+  logging:
+    level:
+      org.apache.zookeeper.ClientCnxn: INFO
 
 my-queue: queue1
 sec-queue: queue3
@@ -90,6 +100,5 @@ mybatis-plus:
     lazy-loading-enabled: true
     log-impl: org.apache.ibatis.logging.stdout.StdOutImpl
     cache-enabled: true
-
-
-
+server:
+  port: 8090

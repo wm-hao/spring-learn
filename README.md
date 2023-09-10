@@ -29,3 +29,7 @@
     4.@SendTo注解后，要有返回值，不然会报错进入死信队列DLQ
     5.不转发消息，就void返回
     6.application-2.yml、application-3.yml是为了测试多个订阅，queue模式每次只有一个实例消费，topic都会消费（入口ActiveMQController）
+
+##  六、集成spring-cloud和zk做注册中心
+    1.@EnableDiscoveryClient 开启服务发现
+    2.用RestTemplate访问application-name作为http主机名的服务

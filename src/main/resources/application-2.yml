@@ -1,4 +1,3 @@
-
 spring:
   # 配置数据源信息
   datasource:
@@ -77,6 +76,11 @@ spring:
       idle-timeout: 30000
   jms:
     pub-sub-domain: true
+  cloud:
+    zookeeper:
+      connect-string: localhost:2181
+  application:
+    name: zk-discovery-client1
 
 my-queue: queue1
 sec-queue: queue3

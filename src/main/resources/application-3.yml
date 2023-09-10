@@ -78,6 +78,12 @@ spring:
   jms:
     pub-sub-domain: false
 
+  cloud:
+    zookeeper:
+      connect-string: localhost:2181
+  application:
+    name: zk-discovery-client2
+
 my-queue: queue1
 sec-queue: queue3
 topic1: topic1
